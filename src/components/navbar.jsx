@@ -1,7 +1,6 @@
 function Navbar() {
     return (
-        <nav className="px-4 py-2 sm:ml-52 flex gap-2">
-
+        <nav className="px-4 py-2 sm:ml-52 flex gap-2.5">
             {/* sidebar collcapse button */}
             <button
                 data-drawer-target="sidebar"
@@ -30,9 +29,9 @@ function Navbar() {
             <button
                 id="dropdownOffsetButton"
                 data-dropdown-toggle="dropdownGenre"
-                data-dropdown-offset-distance="-80"
-                data-dropdown-offset-skidding="110"
-                data-dropdown-placement="right"
+                data-dropdown-offset-distance="10"
+                data-dropdown-offset-skidding="50"
+                data-dropdown-placement="bottom"
                 className="text-white bg-[#393939] hover:bg-gray-600 font-normal rounded-full text-sm px-5 py-2 text-center inline-flex items-center"
                 type="button"
             >
@@ -59,7 +58,7 @@ function Navbar() {
                 <input
                     type="text"
                     id="search-dropdown"
-                    className="appearance-none block p-2.5 w-full z-20 text-sm bg-[#393939] placeholder:text-white text-white rounded-full"
+                    className="appearance-none block pl-3.5 py-2.5 w-full z-20 text-sm bg-[#393939] placeholder:text-white text-white rounded-full"
                     placeholder="Search"
                     required
                 />
@@ -85,10 +84,139 @@ function Navbar() {
                 </button>
             </form>
 
-            {/* dropdown list */}
+            <button
+                id="dropdownDefaultButton" data-dropdown-toggle="dropdownNotif"
+                className="p-3 font-medium h-full rounded-full text-white bg-[#393939]"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-4 h-4 text-white"
+                >
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                    />
+                </svg>
+            </button>
+
+            <button
+                id="dropdownOffsetButton"
+                data-dropdown-toggle="dropdownProfile"
+                data-dropdown-offset-distance="10"
+                data-dropdown-offset-skidding="20"
+                data-dropdown-placement="bottom"
+                className="hidden sm:inline-flex items-center gap-1 w-max rounded-full bg-[#393939]"
+            >
+                <div className="p-[2px] w-10 h-10 rounded-full">
+                    <img
+                        className="rounded-full"
+                        src="https://flowbite.com/docs/images/people/profile-picture-3.jpg"
+                        alt=""
+                    />
+                </div>
+                <div className="text-left flex flex-col mr-4">
+                    <span className="text-xs text-white">Bonnie Green</span>
+                    <span className="text-xs text-gray-400 ">@flowbite.com</span>
+                </div>
+            </button>
+
+            {/* dropdown genre list */}
             <div
                 id="dropdownGenre"
-                className="z-60 hidden bg-[#393939] divide-y divide-gray-100 rounded-lg shadow-sm w-44"
+                className="z-[70] hidden bg-[#393939] divide-y divide-gray-100 rounded-lg shadow-sm w-44"
+            >
+                <ul
+                    className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="dropdownDefault"
+                >
+                    <li>
+                        <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                            Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                            Earnings
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                            Sign out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            {/* dropdown notif list */}
+            <div
+                id="dropdownNotif"
+                className="z-[70] hidden bg-[#393939] divide-y divide-gray-100 rounded-lg shadow-sm w-44"
+            >
+                <ul
+                    className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="dropdownDefault"
+                >
+                    <li>
+                        <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                            Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                            Earnings
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        >
+                            Sign out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            {/* dropdown profile list */}
+            <div
+                id="dropdownProfile"
+                className="z-[70] hidden bg-[#393939] divide-y divide-gray-100 rounded-lg shadow-sm w-44"
             >
                 <ul
                     className="py-2 text-sm text-gray-700 dark:text-gray-200"

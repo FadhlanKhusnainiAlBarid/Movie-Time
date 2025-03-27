@@ -49,7 +49,7 @@ export default function Sidebar() {
                         <li>
                             <hr className="h-px bg-gray-600 border-0" />
                         </li>
-                        <li>
+                        {/* <li>
                             <a
                                 href="#"
                                 className="flex items-center p-2 text-white rounded-lg hover:bg-gray-600 group"
@@ -57,7 +57,7 @@ export default function Sidebar() {
                                 <Profile />
                                 <span className="ms-3">Profile</span>
                             </a>
-                        </li>
+                        </li> */}
                         <li>
                             <a
                                 href="#"
