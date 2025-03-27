@@ -1,4 +1,32 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+const axiosInstance = axios.create({
+    baseURL: "https://jsonplaceholder.typicode.com",
+});
+
+const options = {
+    method: "GET",
+    url: "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+    headers: {
+        accept: "application/json",
+        Authorization:
+            `{Bearer ${import.meta.env.VITE_API_KEY}}`,
+    },
+};
+
+const imageURL = "https://image.tmdb.org/t/p/original/";
+
 export default function Carousel() {
+    const [upComing, setUpComing] = useState([0, 1, 2, 3, 4]);
+
+    useEffect(() => {
+        async function FetchUpcoming(params) {
+            const { data } = await axiosInstance.request(params);
+            setUpComing(data.results.slice(0, 5));
+        }
+        FetchUpcoming(options);
+    }, []);
 
     return (
         <div
@@ -104,7 +132,6 @@ export default function Carousel() {
                 ></button>
             </div>
 
-            {/* button left right */}
             <button
                 type="button"
                 className="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
