@@ -15,14 +15,37 @@ const optionsPopular = {
   },
 };
 
+const optionsGenre = {
+  method: "GET",
+  url: "https://api.themoviedb.org/3/genre/movie/list?language=en",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NjFhOTgxYzViY2JkMDUzY2Q1ZWY4OTUyMGRhOWE0NSIsIm5iZiI6MTczMDA4NjM0NS4xNiwic3ViIjoiNjcxZjA1Yzk1ZDBkZTg5MDQyZDk4OTM4Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.qb6CPBdWNIIkAwfFCDsYdT4zFkUNXBwywaKv2MCrO0s",
+  },
+};
+
 const imageURL = "https://image.tmdb.org/t/p/original/";
 
 export default function Carousel() {
   const [upComing, setUpComing] = useState([]);
+  const [genres, setGenres] = useState([]);
   const container = useRef();
 
   const BindData = (data) => {
     data.forEach((data, i) => {
+      const newGenres = data.genre_ids.map((g) => {
+        const test = genres.genres.find((e) => e.id === g);
+        return test.name;
+      });
+
+      newGenres.forEach((data) => {
+        container.current.querySelectorAll(".genres")[
+          i
+        ].innerHTML += `<p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit">
+            caj
+          </p>`;
+      });
       container.current.querySelectorAll("img")[i].src =
         imageURL + data.backdrop_path;
       container.current.querySelectorAll(".title")[i].innerText = data.title;
@@ -37,6 +60,12 @@ export default function Carousel() {
       setUpComing(data.results.slice(0, 5));
     }
     FetchPopular(optionsPopular);
+
+    async function FetchGenres(params) {
+      const { data } = await axiosInstance.request(params);
+      setGenres(data);
+    }
+    FetchGenres(optionsGenre);
   }, []);
 
   useEffect(() => {
