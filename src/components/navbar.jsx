@@ -108,7 +108,7 @@ function Navbar() {
                 id="dropdownOffsetButton"
                 data-dropdown-toggle="dropdownProfile"
                 data-dropdown-offset-distance="10"
-                data-dropdown-offset-skidding="20"
+                data-dropdown-offset-skidding="-20"
                 data-dropdown-placement="bottom"
                 className="hidden sm:inline-flex items-center gap-1 w-max rounded-full bg-[#393939]"
             >

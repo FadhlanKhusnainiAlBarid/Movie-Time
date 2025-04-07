@@ -1,9 +1,8 @@
-import Carousel from "./components/carousel";
 import Navbar from "./components/navbar";
 import Sidebar from "./components/sidebar";
+import Carousel from "./components/carousel";
 
 function App() {
-
   return (
     <div className="relative container mx-auto h-min">
       <Sidebar />
