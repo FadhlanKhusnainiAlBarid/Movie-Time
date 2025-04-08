@@ -27,25 +27,55 @@ const optionsGenre = {
 
 const imageURL = "https://image.tmdb.org/t/p/original/";
 
+// const ElGenres = (data) => {
+//   `<p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit">
+//     ${data}
+//   </p>`;
+// };
+
 export default function Carousel() {
   const [upComing, setUpComing] = useState([]);
   const [genres, setGenres] = useState([]);
   const container = useRef();
 
+  // const markup = {
+  //   __html: `<p className="text-red-500">test</p>`,
+  // };
+
   const BindData = (data) => {
     data.forEach((data, i) => {
+      container.current.querySelectorAll(".genres")[i].innerHTML = "";
+
       const newGenres = data.genre_ids.map((g) => {
         const test = genres.genres.find((e) => e.id === g);
         return test.name;
       });
 
-      newGenres.forEach((data) => {
+      newGenres.forEach((data, index) => {
         container.current.querySelectorAll(".genres")[
           i
-        ].innerHTML += `<p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit">
-            caj
-          </p>`;
+        ].innerHTML += `<p>${data}</p>`;
+
+        container.current
+          .querySelectorAll(".genres")
+          [i].querySelectorAll("p")
+          [index].classList.add(
+            "py-px",
+            "px-1.5",
+            "lg:px-2.5",
+            "rounded-full",
+            "bg-white/10",
+            "backdrop-blur-sm",
+            "text-white",
+            "text-xs",
+            "lg:text-lg",
+            "inline-flex",
+            "items-center",
+            "w-fit",
+            "h-fit"
+          );
       });
+
       container.current.querySelectorAll("img")[i].src =
         imageURL + data.backdrop_path;
       container.current.querySelectorAll(".title")[i].innerText = data.title;
@@ -94,7 +124,7 @@ export default function Carousel() {
             alt="..."
           />
           <div className="absolute z-40 left-1 bottom-1 md:left-3 md:bottom-3 lg:left-5 lg:bottom-5 w-[41.666667%] xl:w-[45%]">
-            <span className="genres flex gap-2.5">
+            <span className="genres flex gap-2.5" contentEditable="true">
               {/* <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"></p>
               <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"></p> */}
             </span>
