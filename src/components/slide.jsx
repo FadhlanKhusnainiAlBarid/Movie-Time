@@ -21,7 +21,7 @@ const optionsGenre = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5NjFhOTgxYzViY2JkMDUzY2Q1ZWY4OTUyMGRhOWE0NSIsIm5iZiI6MTczMDA4NjM0NS4xNiwic3ViIjoiNjcxZjA1Yzk1ZDBkZTg5MDQyZDk4OTM4Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.qb6CPBdWNIIkAwfFCDsYdT4zFkUNXBwywaKv2MCrO0s",
+      `Bearer ${import.meta.env.VITE_API_KEY}`,
   },
 };
 

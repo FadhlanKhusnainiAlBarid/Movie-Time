@@ -27,13 +27,13 @@ export default function Sidebar() {
               </h1>
             </li>
             <li>
-              <a
-                href="/"
+              <NavLink
+                to="/"
                 className="flex cursor-pointer items-center p-2 text-white rounded-lg hover:bg-gray-600 group"
               >
                 <Home />
                 <span className="ms-3">Home</span>
-              </a>
+              </NavLink>
             </li>
             <li>
               <NavLink
