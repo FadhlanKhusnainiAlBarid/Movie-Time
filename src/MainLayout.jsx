@@ -11,7 +11,7 @@ export default function MainLayout() {
       <Navbar />
 
       {/* content */}
-      <div className="p-4 sm:ml-52 max-w-full">
+      <div className="px-4 space-y-3 md:space-y-5 lg:space-y-7 md sm:ml-52 max-w-full">
         <Outlet />
       </div>
     </div>

@@ -27,28 +27,18 @@ const optionsGenre = {
 
 const imageURL = "https://image.tmdb.org/t/p/original/";
 
-// const ElGenres = (data) => {
-//   `<p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit">
-//     ${data}
-//   </p>`;
-// };
-
 export default function Carousel() {
   const [upComing, setUpComing] = useState([]);
   const [genres, setGenres] = useState([]);
   const container = useRef();
-
-  // const markup = {
-  //   __html: `<p className="text-red-500">test</p>`,
-  // };
 
   const BindData = (data) => {
     data.forEach((data, i) => {
       container.current.querySelectorAll(".genres")[i].innerHTML = "";
 
       const newGenres = data.genre_ids.map((g) => {
-        const test = genres.genres.find((e) => e.id === g);
-        return test.name;
+        const test = genres.genres?.find((e) => e.id === g);
+        return test?.name;
       });
 
       newGenres.forEach((data, index) => {
@@ -119,15 +109,12 @@ export default function Carousel() {
           data-carousel-item
         >
           <img
-            src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW92aWUlMjBwb3N0ZXJ8ZW58MHx8MHx8fDA%3D"
+            src="..."
             className="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-full left-full"
             alt="..."
           />
           <div className="absolute z-40 left-1 bottom-1 md:left-3 md:bottom-3 lg:left-5 lg:bottom-5 w-[41.666667%] xl:w-[45%]">
-            <span className="genres flex gap-2.5" contentEditable="true">
-              {/* <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"></p>
-              <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"></p> */}
-            </span>
+            <span className="genres flex gap-2.5" contentEditable="true"></span>
             <div className="flex flex-col gap-1 md:gap-2.5">
               <h1 className="title line-clamp-1 md:line-clamp-none text-base xl:text-4xl lg:text-3xl md:text-lg font-bold text-white"></h1>
               <p className="overview line-clamp-2 xl:line-clamp-[7] lg:line-clamp-4 md:line-clamp-2 text-xs xl:text-xl lg:text-base md:text-sm text-white"></p>
@@ -155,10 +142,7 @@ export default function Carousel() {
             alt="..."
           />
           <div className="absolute z-40 left-1 bottom-1 md:left-3 md:bottom-3 lg:left-5 lg:bottom-5 w-[41.666667%] xl:w-[45%]">
-            <span className="genres flex gap-2.5">
-              {/* <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"></p>
-              <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"></p> */}
-            </span>
+            <span className="genres flex gap-2.5"></span>
             <div className="flex flex-col gap-1 md:gap-2.5">
               <h1 className="title line-clamp-1 md:line-clamp-none text-base xl:text-4xl lg:text-3xl md:text-lg font-bold text-white"></h1>
               <p className="overview line-clamp-2 xl:line-clamp-[7] lg:line-clamp-4 md:line-clamp-2 text-xs xl:text-xl lg:text-base md:text-sm text-white"></p>
@@ -186,10 +170,7 @@ export default function Carousel() {
             alt="..."
           />
           <div className="absolute z-40 left-1 bottom-1 md:left-3 md:bottom-3 lg:left-5 lg:bottom-5 w-[41.666667%] xl:w-[45%]">
-            <span className="genres flex gap-2.5">
-              {/* <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"></p>
-              <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"></p> */}
-            </span>
+            <span className="genres flex gap-2.5"></span>
             <div className="flex flex-col gap-1 md:gap-2.5">
               <h1 className="title line-clamp-1 md:line-clamp-none text-base xl:text-4xl lg:text-3xl md:text-lg font-bold text-white"></h1>
               <p className="overview line-clamp-2 xl:line-clamp-[7] lg:line-clamp-4 md:line-clamp-2 text-xs xl:text-xl lg:text-base md:text-sm text-white"></p>
@@ -217,10 +198,7 @@ export default function Carousel() {
             alt="..."
           />
           <div className="absolute z-40 left-1 bottom-1 md:left-3 md:bottom-3 lg:left-5 lg:bottom-5 w-[41.666667%] xl:w-[45%]">
-            <span className="genres flex gap-2.5">
-              {/* <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"></p>
-              <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"></p> */}
-            </span>
+            <span className="genres flex gap-2.5"></span>
             <div className="flex flex-col gap-1 md:gap-2.5">
               <h1 className="title line-clamp-1 md:line-clamp-none text-base xl:text-4xl lg:text-3xl md:text-lg font-bold text-white"></h1>
               <p className="overview line-clamp-2 xl:line-clamp-[7] lg:line-clamp-4 md:line-clamp-2 text-xs xl:text-xl lg:text-base md:text-sm text-white"></p>
@@ -248,10 +226,7 @@ export default function Carousel() {
             alt="..."
           />
           <div className="absolute z-40 left-1 bottom-1 md:left-3 md:bottom-3 lg:left-5 lg:bottom-5 w-[41.666667%] xl:w-[45%]">
-            <span className="genres flex gap-2.5">
-              {/* <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"></p>
-              <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"></p> */}
-            </span>
+            <span className="genres flex gap-2.5"></span>
             <div className="flex flex-col gap-1 md:gap-2.5">
               <h1 className="title line-clamp-1 md:line-clamp-none text-base xl:text-4xl lg:text-3xl md:text-lg font-bold text-white"></h1>
               <p className="overview line-clamp-2 xl:line-clamp-[7] lg:line-clamp-4 md:line-clamp-2 text-xs xl:text-xl lg:text-base md:text-sm text-white"></p>
