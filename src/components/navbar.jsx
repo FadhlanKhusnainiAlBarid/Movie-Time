@@ -5,6 +5,13 @@ function Navbar() {
   const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (keyword.trim()) {
+      navigate(`/search/${encodeURIComponent(keyword)}`);
+    }
+  };
+
   return (
     <nav className="px-4 py-2 sm:ml-52 flex gap-2.5">
       {/* sidebar collcapse button */}
@@ -38,7 +45,7 @@ function Navbar() {
         data-dropdown-offset-distance="10"
         data-dropdown-offset-skidding="50"
         data-dropdown-placement="bottom"
-        className="text-white bg-[#393939] hover:bg-gray-600 font-normal rounded-full text-sm px-5 py-2 text-center inline-flex items-center"
+        className="text-white bg-[#28262D] hover:bg-gray-600 font-normal rounded-full text-sm px-5 py-2 text-center inline-flex items-center"
         type="button"
       >
         All
@@ -60,11 +67,11 @@ function Navbar() {
       </button>
 
       {/* input keyword */}
-      <form className="relative w-full">
+      <form onSubmit={handleSubmit} className="relative w-full">
         <input
           type="text"
           id="keyword-dropdown"
-          className="appearance-none block pl-3.5 py-2.5 w-full z-20 text-sm bg-[#393939] placeholder:text-white text-white rounded-full"
+          className="appearance-none block pl-3.5 py-2.5 w-full z-20 text-sm bg-[#28262D] placeholder:text-white text-white rounded-full"
           placeholder="Search"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
@@ -72,7 +79,6 @@ function Navbar() {
         />
         <button
           type="submit"
-          onClick={() => navigate(`/search/${keyword}`)}
           className="absolute top-0 end-0 p-3 text-sm font-medium h-full rounded-full text-white"
         >
           <svg
@@ -96,7 +102,7 @@ function Navbar() {
       <button
         id="dropdownDefaultButton"
         data-dropdown-toggle="dropdownNotif"
-        className="p-3 font-medium h-full rounded-full text-white bg-[#393939]"
+        className="p-3 font-medium h-full rounded-full text-white bg-[#28262D]"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +126,7 @@ function Navbar() {
         data-dropdown-offset-distance="10"
         data-dropdown-offset-skidding="-20"
         data-dropdown-placement="bottom"
-        className="hidden sm:inline-flex items-center gap-1 w-max rounded-full bg-[#393939]"
+        className="hidden sm:inline-flex items-center gap-1 w-max rounded-full bg-[#28262D]"
       >
         <div className="p-[2px] w-10 h-10 rounded-full">
           <img
@@ -138,7 +144,7 @@ function Navbar() {
       {/* dropdown genre list */}
       <div
         id="dropdownGenre"
-        className="z-[70] hidden bg-[#393939] divide-y divide-gray-100 rounded-lg shadow-sm w-44"
+        className="z-[70] hidden bg-[#28262D] divide-y divide-gray-100 rounded-lg shadow-sm w-44"
       >
         <ul
           className="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -182,7 +188,7 @@ function Navbar() {
       {/* dropdown notif list */}
       <div
         id="dropdownNotif"
-        className="z-[70] hidden bg-[#393939] divide-y divide-gray-100 rounded-lg shadow-sm w-44"
+        className="z-[70] hidden bg-[#28262D] divide-y divide-gray-100 rounded-lg shadow-sm w-44"
       >
         <ul
           className="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -226,7 +232,7 @@ function Navbar() {
       {/* dropdown profile list */}
       <div
         id="dropdownProfile"
-        className="z-[70] hidden bg-[#393939] divide-y divide-gray-100 rounded-lg shadow-sm w-44"
+        className="z-[70] hidden bg-[#28262D] divide-y divide-gray-100 rounded-lg shadow-sm w-44"
       >
         <ul
           className="py-2 text-sm text-gray-700 dark:text-gray-200"

@@ -14,7 +14,7 @@ export default function Sidebar() {
         className="absolute sm:top-2 top-0 sm:bottom-2 bottom-0 sm:left-2 left-0 z-40 w-52 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-[#393939] sm:rounded-3xl rounded-none">
+        <div className="h-full px-3 py-4 overflow-y-auto bg-[#28262D] sm:rounded-3xl rounded-none">
           <ul className="space-y-2 font-normal capitalize">
             <li className="flex items-center gap-2 p-2 mb-4 text-white rounded-lg group">
               <img
@@ -36,13 +36,13 @@ export default function Sidebar() {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/search"
+              <a
+                href="/#"
                 className="flex items-center p-2 text-white rounded-lg hover:bg-gray-600 group"
               >
                 <Explore />
                 <span className="ms-3">Explore</span>
-              </NavLink>
+              </a>
             </li>
             <li>
               <a

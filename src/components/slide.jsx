@@ -20,8 +20,7 @@ const optionsGenre = {
   url: "https://api.themoviedb.org/3/genre/movie/list?language=en",
   headers: {
     accept: "application/json",
-    Authorization:
-      `Bearer ${import.meta.env.VITE_API_KEY}`,
+    Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
   },
 };
 
@@ -84,6 +83,7 @@ export default function Slide() {
             <div className="container_slide flex flex-nowrap space-x-2 w-fit">
               {data.results?.map((data) => {
                 let textGenre = "";
+
                 const newGenre = data.genre_ids.map((genre) => {
                   const test = genres.genres?.find((e) => e.id === genre);
                   return test?.name;
