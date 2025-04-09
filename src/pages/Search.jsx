@@ -146,7 +146,7 @@ export default function Search() {
                         <>
                           <div
                             key={index}
-                            className="cards relative snap-center min-w-full bg-transparent rounded-lg shadow-sm"
+                            className="cards relative snap-center min-w-full hover:scale-95 bg-transparent rounded-lg shadow-sm"
                           >
                             <a href="#">
                               <img

@@ -100,7 +100,7 @@ export default function Slide() {
                 return (
                   <div
                     key={data.id}
-                    className="cards relative snap-center w-24 xl:w-52 lg:w-40 md:w-28 bg-transparent rounded-lg shadow-sm m-0"
+                    className="cards relative snap-center w-24 xl:w-52 lg:w-40 md:w-28 hover:scale-125 bg-transparent rounded-lg shadow-sm m-0"
                   >
                     <a href="#">
                       <img
