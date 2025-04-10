@@ -1,11 +1,9 @@
-import { Link, NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import videoSearch from "../assets/images/video-search.png";
 import { Home, Explore, Love, Profile, Settings } from "../assets/icons/icons";
 
-const navigate = {};
-
 export default function Sidebar() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -36,13 +34,13 @@ export default function Sidebar() {
               </NavLink>
             </li>
             <li>
-              <a
-                href="/#"
-                className="flex items-center p-2 text-white rounded-lg hover:bg-gray-600 group"
+              <span
+                onClick={() => navigate("/Detail/:titleMovie")}
+                className="flex cursor-pointer items-center p-2 text-white rounded-lg hover:bg-gray-600 group"
               >
                 <Explore />
                 <span className="ms-3">Explore</span>
-              </a>
+              </span>
             </li>
             <li>
               <a

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Play, Download } from "../assets/icons/icons";
 import { Carousel, createTheme } from "flowbite-react";
 import axios from "axios";
+import useGetGenres from "../hooks/useGetGenres";
 
 const axiosInstance = axios.create({
   baseURL: "https://jsonplaceholder.typicode.com",
@@ -16,33 +17,19 @@ const optionsPopular = {
   },
 };
 
-const optionsGenre = {
-  method: "GET",
-  url: "https://api.themoviedb.org/3/genre/movie/list?language=en",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
-  },
-};
-
 const imageURL = "https://image.tmdb.org/t/p/original/";
 
 export default function CarouselCom() {
   const [upComing, setUpComing] = useState([]);
-  const [genres, setGenres] = useState([]);
+  const { newGenres } = useGetGenres(upComing);
 
   useEffect(() => {
     async function FetchPopular(params) {
       const { data } = await axiosInstance.request(params);
       setUpComing(data.results.slice(0, 5));
     }
-    FetchPopular(optionsPopular);
 
-    async function FetchGenres(params) {
-      const { data } = await axiosInstance.request(params);
-      setGenres(data);
-    }
-    FetchGenres(optionsGenre);
+    FetchPopular(optionsPopular);
   }, []);
 
   const customTheme = createTheme({
@@ -59,12 +46,7 @@ export default function CarouselCom() {
 
   return (
     <Carousel theme={customTheme}>
-      {upComing.map((data) => {
-        const newGenre = data.genre_ids.map((genre) => {
-          const test = genres.genres?.find((e) => e.id === genre);
-          return test?.name;
-        });
-
+      {newGenres.map((data) => {
         return (
           <div
             key={data.id}
@@ -76,20 +58,23 @@ export default function CarouselCom() {
               className="absolute block w-full h-full -translate-x-1/2 -translate-y-1/2 top-full left-full"
             />
             <div className="absolute z-40 left-1 bottom-1 md:left-3 md:bottom-3 lg:left-5 lg:bottom-5 w-[41.666667%] xl:w-[45%]">
-              <span className="genres flex gap-2.5" contentEditable="true">
-                {newGenre.map((genre) => {
+              <span className="genres flex gap-2.5">
+                {data.PerGenres.map((genre, index) => {
                   return (
-                    <p className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit">
+                    <p
+                      key={index}
+                      className="py-1 px-1.5 lg:px-2.5 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs lg:text-lg inline-flex items-center w-fit h-fit"
+                    >
                       {genre}
                     </p>
                   );
                 })}
               </span>
               <div className="flex flex-col gap-1 md:gap-2.5">
-                <h1 className="title line-clamp-1 md:line-clamp-none text-base xl:text-4xl lg:text-3xl md:text-lg font-bold text-white">
+                <h1 className="line-clamp-1 md:line-clamp-none text-base xl:text-4xl lg:text-3xl md:text-lg font-bold text-white">
                   {data.title}
                 </h1>
-                <p className="overview line-clamp-2 xl:line-clamp-[7] lg:line-clamp-4 md:line-clamp-2 text-xs xl:text-xl lg:text-base md:text-sm text-white">
+                <p className="line-clamp-2 xl:line-clamp-5 lg:line-clamp-3 md:line-clamp-2 text-xs xl:text-xl lg:text-base md:text-sm text-white">
                   {data.overview}
                 </p>
                 <div className="flex gap-2.5">

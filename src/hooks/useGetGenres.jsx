@@ -25,21 +25,15 @@ function useGetGenres(data) {
     }
 
     function setingNewGenres() {
-      const results = data.results;
-
-      const loopPerData = results?.map((PerData) => {
-        // const loopPerGenresInData = PerData.genre_ids.map((ids) => {
-        // const findGenre = dataGenres.genres.find((e) => e.id === ids);
-        // return findGenre?.name;
-        // });
-        // return loopPerGenresInData;
-        // return [
-        //   PerData,
-        //   {
-        //     PerGenresInData: loopPerGenresInData,
-        //   },
-        // ];
-        return PerData;
+      const loopPerData = data?.map((PerData) => {
+        const loopPerGenresInData = PerData.genre_ids.map((ids) => {
+          const findGenre = dataGenres.genres?.find((e) => e.id === ids);
+          return findGenre?.name;
+        });
+        return {
+          ...PerData,
+          PerGenres: loopPerGenresInData,
+        };
       });
 
       setNewGenres(loopPerData);

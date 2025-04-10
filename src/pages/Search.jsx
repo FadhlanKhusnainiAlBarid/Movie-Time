@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Star } from "../assets/icons/icons";
 import axios from "axios";
 import { Pagination, createTheme, ThemeProvider } from "flowbite-react";
+import useGetGenres from "../hooks/useGetGenres";
 
 const axiosInstance = axios.create({
   baseURL: "https://jsonplaceholder.typicode.com",
 });
-
-// const options = {
-//   method: "GET",
-//   url: `https://api.themoviedb.org/3/search/movie?query=movie&include_adult=false&language=en-US&page=1`,
-//   headers: {
-//     accept: "application/json",
-//     Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
-//   },
-// };
 
 const imageURL = "https://image.tmdb.org/t/p/original/";
 
@@ -27,6 +19,9 @@ export default function Search() {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(true);
   const [results, setResults] = useState(false);
+  const { newGenres } = useGetGenres(data.results);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (keyword === undefined) {
@@ -92,20 +87,8 @@ export default function Search() {
     },
     pages: {
       base: "xs:mt-0 mt-2 inline-flex items-center space-x-0 md:-space-x-px",
-      showIcon: "inline-flex",
-      previous: {
-        base: "ml-0 rounded-l-lg border border-gray-300 bg-white px-3 py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
-        icon: "h-5 w-5",
-      },
-      next: {
-        base: "rounded-r-lg border border-gray-300 bg-white px-3 py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
-        icon: "h-5 w-5",
-      },
       selector: {
         base: "hidden md:block w-12 border border-gray-300 bg-white py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white",
-        active:
-          "bg-cyan-50 text-cyan-600 hover:bg-cyan-100 hover:text-cyan-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white",
-        disabled: "cursor-not-allowed opacity-50",
       },
     },
   });
@@ -141,20 +124,19 @@ export default function Search() {
               {results ? (
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-                    {data.results?.map((data, index) => {
+                    {newGenres?.map((data, index) => {
                       return (
                         <>
                           <div
                             key={index}
-                            className="cards relative snap-center min-w-full hover:scale-95 bg-transparent rounded-lg shadow-sm"
+                            onClick={() => navigate(`/Detail/${data.id}`)}
+                            className="cards cursor-pointer relative snap-center min-w-full hover:scale-95 bg-transparent rounded-lg shadow-sm"
                           >
-                            <a href="#">
-                              <img
-                                className="rounded-lg h-full"
-                                src={imageURL + data.poster_path}
-                                alt="..."
-                              />
-                            </a>
+                            <img
+                              className="rounded-lg h-full"
+                              src={imageURL + data.poster_path}
+                              alt="..."
+                            />
                             <div className="absolute inset-x-1 lg:inset-x-1.5 bottom-px lg:bottom-1 h-fit overflow-hidden">
                               <a href="#">
                                 <h5 className="line-clamp-2 text-xs xl:text-xl lg:text-base font-bold tracking-tigh text-white">
@@ -170,6 +152,13 @@ export default function Search() {
                                 </span>
                                 <p className="line-clamp-1 genres ml-1 text-xs xl:text-base lg:text-sm font-bold text-gray-600">
                                   |
+                                  {data.PerGenres.map((data, i) => {
+                                    return (
+                                      <>
+                                        {i == 0 ? <> {data}</> : <> • {data}</>}
+                                      </>
+                                    );
+                                  })}
                                 </p>
                               </div>
                             </div>
